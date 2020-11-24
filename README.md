@@ -1,10 +1,10 @@
 # Fullstack Challenge MOSANO
 This challenge arises from a proposal of Mosano, a company specialized in software development. 
-This project consists in the development of an API and a client with the purpose of simulating a functional prototype. 
-The main objective is to ensure that communication occurs smoothly and easy interaction with the user. The graphical interface developed allows the registration of users through their full name, country and birthday. After entering and submitting these parameters, the data is sent to the API and documents are created in a database.
+This project consists in the development of an API and a client with the purpose to simulate a functional prototype. 
+The main objective is to ensure that communication occurs smoothly and with an user-friendly interaction. The developed graphical interface allows the registration of users through their full name, country and birthday. After entering and submitting these parameters, the data is sent to the API and documents are created in a database.
 
 ## Implementation
-The API is developed in Node.js together with GraphQL. All querys and mutations responsible for manipulating the database documents are implemented according to the actions on the front-end. An authentication method is added in this application so that only users who are properly registered can access the system. Only after the correct insertion of the credentials will the user have the ability to insert new records, edit and delete.
+The API is developed in Node.js together with GraphQL. All queries and mutations responsible for operating the database documents are implemented according to the actions in the front-end. An authentication method is added to this application to grant that only properly registered users can access the system. Only after the correct insertion of the credentials will the user be allowed to insert new records, edit and delete existing ones.
 
 * [ReactJS](https://reactjs.org/)
 * [NodeJS](https://nodejs.org/en/)
