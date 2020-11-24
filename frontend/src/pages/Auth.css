@@ -1,0 +1,40 @@
+.auth-form {
+    width: 25rem;
+    max-width: 80%;
+    margin: 5rem auto;
+  }
+
+.form-control-auth label,
+.form-control-auth input{
+  width: 100%;
+  display: block;
+}
+
+.form-control-auth label {
+  margin-bottom: 0.5rem;
+}
+
+.form-control-auth {
+  margin-bottom: 1rem;
+}
+
+  
+  .success-message {
+    margin: auto;
+    text-align: center;
+    width: 35rem;
+    padding: 5px;
+    background-color: rgba(50,205,50, 0.5);
+    color: #fff;
+    border-radius: 10px;
+  }
+
+  .error-message {
+    margin: auto;
+    text-align: center;
+    width: 35rem;
+    padding: 5px;
+    background-color: rgba(255,0,0, 0.5);
+    color: #fff;
+    border-radius: 10px;
+  }
