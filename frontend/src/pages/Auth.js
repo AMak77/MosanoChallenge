@@ -106,7 +106,7 @@ const AuthPage = () => {
             </form>
             {showSuccessMessage && (
                 <div className="success-message">
-                    <p>SUCCESS!!</p>
+                    <p>SUCCESS!! Switch to Login</p>
                 </div>
             )}
             { showErrorMessage && (
