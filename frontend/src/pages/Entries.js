@@ -13,6 +13,8 @@ const Entries = (props) => {
     const [buttonConfirmStatus, setButtonConfirmStatus] = useState(true);
     const [buttonConfirmStatusModal, setButtonConfirmStatusModal] = useState(true);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [country, setCountry] = useState('');
@@ -197,6 +199,7 @@ const Entries = (props) => {
     }
 
     const fetchEntries = () => {
+        setIsLoading(true);
         const requestBody = {
             query: `
                 query {
@@ -226,8 +229,10 @@ const Entries = (props) => {
         })
         .then(resData => {
             setEntries(resData.data.persons)
+            setIsLoading(false);
         })
         .catch(err => {
+            setIsLoading(false);
             console.log(err);
         })
     }
@@ -322,19 +327,22 @@ const Entries = (props) => {
             </Modal>}
             {
                 !props.isAuthed ? (
-                    
-                     (
                             <>
-                            <table>
-                            <tbody>
-                            <tr>
-                                <th>Name</th>
-                                <th>Country</th>
-                                <th>Birthday</th>
-                            </tr>
                         
                             {
-                                !entries ? <Spinner /> : entries.map(entrie => (
+                                !entries.length ? <p>No entries to show!!</p> : (
+                                    <>
+                                
+                                    {isLoading ? <Spinner /> : (
+                                        <table>
+                                        <tbody>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Country</th>
+                                            <th>Birthday</th>
+                                        </tr>
+                                    {
+                                    entries.map(entrie => (
                                     <tr key={entrie._id}>
                                         <td onClick={() => birthdayFunction(entrie.name, entrie.surname, entrie.country, entrie.birthday)}>{entrie.name + ' ' + entrie.surname}</td>
                                         <td onClick={() => birthdayFunction(entrie.name, entrie.surname, entrie.country, entrie.birthday)}>{entrie.country}</td>
@@ -348,22 +356,25 @@ const Entries = (props) => {
                                             )
                                         }
                                     </tr>
-                                ))
-                            }
-                            </tbody>
-                        
-                        </table>
-            
-                        {showMessage &&
-                            <div className="message">
-                                {message}
-                            </div>
-                        }
-                        </>
-                        )
-                    
-                
+                                    ))
+                                    }
+                                    </tbody>
+                                    </table>
+                                    )}
+                                    
+                                
+                                
+                                {showMessage && (
+                                    <div className="message">
+                                        {message}
+                                    </div>
+                                    )
+                                }
+                                </>
+                            )}
+                    </>
                 ) : (
+                    
                     <div className="row">
                         <div className="column">
                                 <form>
@@ -403,17 +414,23 @@ const Entries = (props) => {
                             }
                         </div>
                         
+                        
                             <div className="column">
-                                <table>
-                                    <tbody>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Country</th>
-                                        <th>Birthday</th>
-                                    </tr>
-                                
+                                {
+                                    !entries.length ? <p>No entries to show!!</p> : (
+                                        <>                            
                                     {
-                                        !entries ? <Spinner /> : entries.map(entrie => (
+                                        isLoading ? <><Spinner /> </>:  (
+                                            <table>
+                                                <tbody>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Country</th>
+                                                    <th>Birthday</th>
+                                                </tr>
+                                        {
+                                        
+                                        entries.map(entrie => (
                                             <tr key={entrie._id}>
                                                 <td onClick={() => birthdayFunction(entrie.name, entrie.surname, entrie.country, entrie.birthday)}>{entrie.name + ' ' + entrie.surname}</td>
                                                 <td onClick={() => birthdayFunction(entrie.name, entrie.surname, entrie.country, entrie.birthday)}>{entrie.country}</td>
@@ -428,13 +445,16 @@ const Entries = (props) => {
                                                 }
                                             </tr>
                                         ))
+                                        }
+                                            </tbody>
+                                        </table>
+                                        )
                                     }
-                                    </tbody>
-                                
-                                </table>
+                                </>
+                            )}
                             </div>
                         </div>
-                        )
+                    )
             }
                     
                     
